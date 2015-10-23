@@ -26,7 +26,7 @@ $SPEC{gen_pod_from_acme_cpanlists} = {
     },
     args => {
         module => {
-            name => 'Module name, e.g. Acme::CPANLists::PERLANCAR (or just PERLANCAR)',
+            name => 'Module name, e.g. Acme::CPANLists::PERLANCAR',
             schema => 'str*',
         },
         author_lists => {
@@ -52,7 +52,6 @@ sub gen_pod_from_acme_cpanlists {
     my $module_lists = $args{module_lists};
     if (my $mod = $args{module}) {
         no strict 'refs';
-        $mod = "Acme::CPANLists::$mod" unless $mod =~ /\AAcme::CPANLists::./;
         my $mod_pm = $mod; $mod_pm =~ s!::!/!g; $mod_pm .= ".pm";
         require $mod_pm;
         $author_lists = \@{"$mod\::Author_Lists"};
